@@ -1,11 +1,12 @@
-import logo from './logo.svg';
+import logo from '../../logo.svg';
+import { FaSpotify } from "react-icons/fa";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <FaSpotify className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
