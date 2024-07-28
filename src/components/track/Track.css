@@ -4,18 +4,18 @@
 
 .Track h3 a,
 .Track h3 a:visited {
-  color: #93c572;
+  color: var(--color-5);
 }
 
 .Track p a,
 .Track p a:visited,
 .Track h4 a,
 .Track h4 a:visited {
-  color: #ffffff;
+  color: var(--color-7);
 }
 
 .Track h3 a:hover, .Track h4 a:hover, .Track p a:hover {
-    color: #C1E1C1;
+    color: var(--color-6);
 }
 
 .Track {
@@ -24,7 +24,7 @@
   justify-content: space-between;
   text-align: left;
   padding: 0.5rem 0.2rem 0.5rem 0;
-  border-bottom: 1px #023020 solid;
+  border-bottom: 1px var(--color-3) solid;
 }
 
 .TrackImg {
@@ -33,7 +33,7 @@
 }
 
 .TrackImg img {
-  border: 1px #023020 solid;
+  border: 1px var(--color-3) solid;
   width: calc(2.5h + 2.5vw);
   height: calc(2.5vh + 2.5vw);
 }
@@ -67,7 +67,7 @@
   transition: opacity 0.2s;
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
-  color: #93c572;
+  color: var(--color-5);
   opacity: 0;
 }
 

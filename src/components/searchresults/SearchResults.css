@@ -16,6 +16,6 @@
 }
 
 .AppTracks .ScrollContainer::-webkit-scrollbar-thumb {
-  background-color: #023020;
+  background-color: var(--color-3);
   border-radius: 10px;
 }

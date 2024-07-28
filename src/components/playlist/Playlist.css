@@ -20,7 +20,7 @@
 }
 
 .Playlist .ScrollContainer::-webkit-scrollbar-thumb {
-  background-color: #023020;
+  background-color: var(--color-3);
   border-radius: 10px;
 }
 
@@ -30,14 +30,14 @@
   margin-bottom: 1rem;
   padding: 0.2rem;
   background-color: rgba(147, 197, 114, 0.5);
-  border: 1px #023020 solid;
+  border: 1px var(--color-3) solid;
   font-family: "Sofia Sans Semi Condensed", sans-serif;
   font-size: 1rem;
-  color: #ffffff;
+  color: var(--color-7);
 }
 
 .Playlist input::placeholder {
-  color: #ffffff;
+  color: var(--color-7);
   opacity: 0.5;
 }
 
@@ -48,12 +48,12 @@
   border-radius: 54px;
   border-width: 0px;
   margin-top: 1rem;
-  background-color: #023020;
+  background-color: var(--color-3);
   text-align: center;
   font-family: "Sofia Sans Semi Condensed", sans-serif;
   font-size: 0.8rem;
   transition: background-color 0.25s;
-  color: #ffffff;
+  color: var(--color-7);
   font-weight: bold;
 }
 
