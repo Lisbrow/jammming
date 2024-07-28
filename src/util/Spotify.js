@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const Spotify = ({ children, onSearchResults }) => {
-  const CLIENT_ID = "aa64dcd2e3bf4685b8bc01fb22861cc4";
-  const REDIRECT_URI = "http://localhost:3000/";
+  const CLIENT_ID = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
+  const REDIRECT_URI = `${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}` || 'http://localhost:3000/';
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const SCOPE = "playlist-modify-public";
