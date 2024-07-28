@@ -6,6 +6,7 @@ import TrackList from "../tracklist/TrackList";
 const Playlist = (props) => {
     const { onNameChange, onRemove, playlistTracks, onSave, playlistName } = props;
 
+    // Handle playlist name change
     const handleNameChange = useCallback(
         (event) => {
             onNameChange(event.target.value);

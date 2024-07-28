@@ -6,14 +6,17 @@ import {
 import "./Track.css";
 
 const Track = (props) => {
+  // Handle adding a track
   const addTrack = () => {
     props.onAdd(props.track);
   };
 
+  // Handle removing a track
   const removeTrack = () => {
     props.onRemove(props.track);
   };
 
+  // Handle add or remove shown based on state
   const addOrRemove = () => {
     if (props.isRemoval) {
       return (

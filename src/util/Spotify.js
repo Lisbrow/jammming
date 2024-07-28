@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 const Spotify = ({ children, onSearchResults }) => {
   const CLIENT_ID = "aa64dcd2e3bf4685b8bc01fb22861cc4";
   const REDIRECT_URI = "http://localhost:3000/";
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"; // Note: Use HTTPS
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"; 
   const RESPONSE_TYPE = "token";
-  const SCOPE = "playlist-modify-public"; // Added scopes
+  const SCOPE = "playlist-modify-public"; 
   const TOKEN_EXPIRY_TIME = 3600 * 1000; // Spotify tokens expire in 1 hour (3600 seconds)
 
   const [token, setToken] = useState("");
@@ -16,6 +16,7 @@ const Spotify = ({ children, onSearchResults }) => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
 
+    // Token authorization
     if (!token && hash) {
       token = hash
         .substring(1)
@@ -44,7 +45,7 @@ const Spotify = ({ children, onSearchResults }) => {
     }
   }, []);
 
-  // Fetch user profile
+  // Fetch user profile from Spotify
   const fetchUserProfile = (token) => {
     const headers = { Authorization: `Bearer ${token}` };
     fetch("https://api.spotify.com/v1/me", {
@@ -67,7 +68,7 @@ const Spotify = ({ children, onSearchResults }) => {
       );
   };
 
-  // Search tracks api call
+  // Search tracks using Spotify API
   const search = (term) => {
     fetch(`https://api.spotify.com/v1/search?q=${term}&type=track`, {
       headers: {
@@ -101,10 +102,10 @@ const Spotify = ({ children, onSearchResults }) => {
       );
   };
 
-  // Save to playlist to user's profile
+  // Save to playlist to user's Spotify profile
   const savePlaylist = (playlistName, trackUris) => {
     if (!playlistName || !trackUris.length) {
-        return Promise.resolve(); // Ensure it returns a promise
+        return Promise.resolve(); 
     }
 
     const headers = {
@@ -129,11 +130,11 @@ const Spotify = ({ children, onSearchResults }) => {
                     method: "POST",
                     body: JSON.stringify({ uris: trackUris }),
                 }
-            ).then(() => jsonResponse); // Return the playlist response
+            ).then(() => jsonResponse); 
         })
         .catch((error) => {
             console.error("Error saving playlist to Spotify", error);
-            return Promise.reject(error); // Return a rejected promise on error
+            return Promise.reject(error); 
         });
 };
 

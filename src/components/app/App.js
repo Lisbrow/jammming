@@ -15,11 +15,14 @@ const App = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [playlistUrl, setPlaylistUrl] = useState("");
 
+// Add track to playlist
   const addTrack = useCallback(
     (track) => {
+      // Prevent adding duplicate tracks
       if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
         return;
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
+      // Remove track from search results after adding to playlist
       setSearchResults((prevResults) =>
         prevResults.filter((currentTrack) => currentTrack.id !== track.id)
       );
@@ -27,17 +30,21 @@ const App = () => {
     [playlistTracks]
   );
 
+  // Remove track from playlist
   const removeTrack = useCallback((track) => {
     setPlaylistTracks((prevTracks) =>
       prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
     );
+    // Add track back to search results after removal
     setSearchResults((prevResults) => [...prevResults, track]);
   }, []);
 
+  // Update playlist name
   const updatePlaylistName = useCallback((name) => {
     setPlaylistName(name);
   }, []);
 
+  // Save playlist to Spotify
   const savePlaylist = useCallback(
     (SpotifySavePlaylist) => {
       setIsSaving(true);
@@ -53,16 +60,19 @@ const App = () => {
     [playlistName, playlistTracks]
   );
 
+  // Handle search results from Spotify
   const handleSearchResults = useCallback((results) => {
     setSearchResults(results);
   }, []);
 
+// Clear search results
   const clearSearchResults = () => {
-    setSearchResults([]); // Clear search results
+    setSearchResults([]); 
   };
 
+  // Close popup
   const closePopup = () => {
-    setShowPopup(false); // Hide the popup
+    setShowPopup(false); 
   };
 
   return (
