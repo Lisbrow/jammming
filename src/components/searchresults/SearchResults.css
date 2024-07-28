@@ -1,0 +1,21 @@
+.AppTracks .ScrollContainer {
+  margin-right: -0.9rem;
+  max-height: 93%;
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.AppTracks .ScrollContainer:hover,
+.AppTracks .ScrollContainer:active {
+  overflow-y: auto;
+}
+
+.AppTracks .ScrollContainer::-webkit-scrollbar {
+  background: transparent;
+  width: 0.5rem;
+}
+
+.AppTracks .ScrollContainer::-webkit-scrollbar-thumb {
+  background-color: #023020;
+  border-radius: 10px;
+}

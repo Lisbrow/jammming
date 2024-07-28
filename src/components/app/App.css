@@ -1,53 +1,191 @@
-.App {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&family=Unbounded:wght@200..900&display=swap');
+
+body,
+html,
+#root {
+  overflow: hidden;
+  height: 100vh;
+}
+
+html {
+  font-size: 18px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  font-size: 50rem;
+a {
+  text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a:hover {
+  color: #C1E1C1;
 }
 
-.App-header {
+.Header {
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: #355e3b;
+  text-align: center;
+  font-family: "Unbounded", sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+  border-bottom: 1px #023020 solid;
+  z-index: 3;
+}
+
+.Header .Highlight,
+.Icon,
+h2,
+h3 {
+  color: #93c572;
+}
+
+.Icon {
+  font-size: 1.5rem;
+}
+
+.App {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 15rem;
   background-image: url("dog-with-headphones-color-extended.jpg");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: 150%; /* Resize the background image to cover the entire container */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  color: #ffffff;
+  z-index: 1;
 }
 
-.App-header::before {
+.App::before {
   content: "";
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-color: rgba(2, 48, 32, 0.3);
+  z-index: -1; /* Ensure the background is behind the content */
 }
 
-.App-link {
-  color: #61dafb;
+.AppTracksAndPlaylist {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+  z-index: 2;
 }
 
-@keyframes App-logo-spin {
+.AppTracks,
+.AppPlaylist {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(53, 94, 59, 0.9);
+  border: 1px #023020 solid;
+  z-index: 2;
+}
+
+.LogIn {
+  background-color: none;
+  color: #93c572;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+.LoggedInMessage, .LogIn {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.LoggedInMessage {
+  animation: fade-out 10s;
+  opacity: 0;
+}
+
+.LogIn h1, .LoggedInMessage h2 {
+  text-shadow: 0 0 3px #023020, 0 0 5px #023020
+}
+
+.Popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  background: rgba(53, 94, 59, 0.9);
+  border: 1px #023020 solid;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.Popup a {
+  color: #93c572;
+  font-size: 2rem;
+  text-shadow: 0 0 3px #023020, 0 0 5px #023020
+}
+
+.Popup a:visited {
+  color: #93c572;
+}
+
+.Popup a:hover {
+  color: #C1E1C1;
+}
+
+.PopupButton {
+  position: relative;
+  display: flex;
+  justify-content: right;
+  top: -0.5rem;
+  right: -0.5rem;
+}
+
+.CloseButton {
+  padding: 0.2rem;
+  width: fit-content;
+  font-size: 0.5rem;
+  cursor: pointer;
+  border-width: 0px;
+  background-color: #023020;
+  text-align: center;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  transition: background-color 0.25s;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.CloseButton:hover {
+  background-color: rgba(147, 197, 114, 0.5);
+}
+
+.PlaylistSaved a {
+  font-size: 1.2rem;
+}
+
+.PlaylistSaved {
+  margin-top: -0.5rem;
+}
+
+@keyframes fade-out {
   from {
-    transform: rotate(0deg);
+    opacity: 1;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  .AppTrackAndPlaylist {
+    align-items: center;
+    flex-direction: column;
   }
 }

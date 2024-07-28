@@ -1,0 +1,76 @@
+.Track h3, .Track h4, .Track p {
+    font-family: "Sofia Sans Condensed", sans-serif;
+  }
+
+.Track h3 a,
+.Track h3 a:visited {
+  color: #93c572;
+}
+
+.Track p a,
+.Track p a:visited,
+.Track h4 a,
+.Track h4 a:visited {
+  color: #ffffff;
+}
+
+.Track h3 a:hover, .Track h4 a:hover, .Track p a:hover {
+    color: #C1E1C1;
+}
+
+.Track {
+  width: 99%;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  padding: 0.5rem 0.2rem 0.5rem 0;
+  border-bottom: 1px #023020 solid;
+}
+
+.TrackImg {
+    display: flex;
+    align-items: center;
+}
+
+.TrackImg img {
+  border: 1px #023020 solid;
+  width: calc(2.5h + 2.5vw);
+  height: calc(2.5vh + 2.5vw);
+}
+
+.Track:first-child {
+  padding-top: 0;
+}
+
+.Track:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.TrackInfo {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.TrackInfo p {
+  font-size: 0.9rem;
+}
+
+.AddOrRemoveTrack {
+  cursor: pointer;
+  padding-top: 0.3rem;
+  margin: 0;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #93c572;
+  opacity: 0;
+}
+
+.Track:hover .AddOrRemoveTrack {
+  opacity: 1;
+}
