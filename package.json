@@ -40,5 +40,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://lisbrow.github.io/jammming"
+  "homepage": "https://lisbrow.github.io/jammming",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
 }
