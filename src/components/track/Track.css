@@ -1,6 +1,8 @@
-.Track h3, .Track h4, .Track p {
-    font-family: "Sofia Sans Condensed", sans-serif;
-  }
+.Track h3,
+.Track h4,
+.Track p {
+  font-family: "Sofia Sans Condensed", sans-serif;
+}
 
 .Track h3 a,
 .Track h3 a:visited {
@@ -14,8 +16,10 @@
   color: var(--color-7);
 }
 
-.Track h3 a:hover, .Track h4 a:hover, .Track p a:hover {
-    color: var(--color-6);
+.Track h3 a:hover,
+.Track h4 a:hover,
+.Track p a:hover {
+  color: var(--color-6);
 }
 
 .Track {
@@ -28,8 +32,8 @@
 }
 
 .TrackImg {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .TrackImg img {

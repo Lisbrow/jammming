@@ -45,7 +45,10 @@ const TrackList = (props) => {
   return (
     <div className="TrackList">
       {fade.map((track) => (
-        <div key={track.id} className={`Track ${track.className}`}>
+        <div
+          key={track.id}
+          className={`Track ${track.className}`}
+        >
           <Track
             track={track}
             onAdd={handleAdd}

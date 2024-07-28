@@ -15,7 +15,7 @@ const App = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [playlistUrl, setPlaylistUrl] = useState("");
 
-// Add track to playlist
+  // Add track to playlist
   const addTrack = useCallback(
     (track) => {
       // Prevent adding duplicate tracks
@@ -65,14 +65,14 @@ const App = () => {
     setSearchResults(results);
   }, []);
 
-// Clear search results
+  // Clear search results
   const clearSearchResults = () => {
-    setSearchResults([]); 
+    setSearchResults([]);
   };
 
   // Close popup
   const closePopup = () => {
-    setShowPopup(false); 
+    setShowPopup(false);
   };
 
   return (
@@ -112,12 +112,13 @@ const App = () => {
         {showPopup && (
           <div className="Popup">
             <div className="PopupButton">
-            <button
-              className="CloseButton"
-              onClick={closePopup}
-            >
-              X
-            </button></div>
+              <button
+                className="CloseButton"
+                onClick={closePopup}
+              >
+                X
+              </button>
+            </div>
             {isSaving ? (
               <p>Saving your playlist...</p>
             ) : (

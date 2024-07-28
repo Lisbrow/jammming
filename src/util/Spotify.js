@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 const Spotify = ({ children, onSearchResults }) => {
   const CLIENT_ID = "aa64dcd2e3bf4685b8bc01fb22861cc4";
   const REDIRECT_URI = "http://localhost:3000/";
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"; 
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-  const SCOPE = "playlist-modify-public"; 
+  const SCOPE = "playlist-modify-public";
   const TOKEN_EXPIRY_TIME = 3600 * 1000; // Spotify tokens expire in 1 hour (3600 seconds)
 
   const [token, setToken] = useState("");
@@ -105,38 +105,38 @@ const Spotify = ({ children, onSearchResults }) => {
   // Save to playlist to user's Spotify profile
   const savePlaylist = (playlistName, trackUris) => {
     if (!playlistName || !trackUris.length) {
-        return Promise.resolve(); 
+      return Promise.resolve();
     }
 
     const headers = {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     };
 
     return fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
-        headers: headers,
-        method: "POST",
-        body: JSON.stringify({ name: playlistName }),
+      headers: headers,
+      method: "POST",
+      body: JSON.stringify({ name: playlistName }),
     })
-        .then((response) => {
-            return response.json();
-        })
-        .then((jsonResponse) => {
-            const playlistId = jsonResponse.id;
-            return fetch(
-                `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-                {
-                    headers: headers,
-                    method: "POST",
-                    body: JSON.stringify({ uris: trackUris }),
-                }
-            ).then(() => jsonResponse); 
-        })
-        .catch((error) => {
-            console.error("Error saving playlist to Spotify", error);
-            return Promise.reject(error); 
-        });
-};
+      .then((response) => {
+        return response.json();
+      })
+      .then((jsonResponse) => {
+        const playlistId = jsonResponse.id;
+        return fetch(
+          `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+          {
+            headers: headers,
+            method: "POST",
+            body: JSON.stringify({ uris: trackUris }),
+          }
+        ).then(() => jsonResponse);
+      })
+      .catch((error) => {
+        console.error("Error saving playlist to Spotify", error);
+        return Promise.reject(error);
+      });
+  };
 
   return (
     <div>

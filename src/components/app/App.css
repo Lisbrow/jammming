@@ -1,6 +1,6 @@
 /* Color pallete */
 :root {
-  --color-1: #355e3b; /* Hunter Green - container background */
+  --color-1: #355E3B; /* Hunter Green - container background */
   --color-2: rgba(53, 94, 59, 0.9); /* Hunter Green with opacity */
   --color-3: #023020; /* Dark Green - border, shadows, buttons, scrollbar */
   --color-4: rgba(2, 48, 32, 0.3); /* Dark Green with opactiy - main background */
@@ -16,7 +16,7 @@
 }
 
 /* Fonts - Unbounded for header, Sofia Sans for app */
-@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&family=Unbounded:wght@200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&family=Unbounded:wght@200..900&display=swap");
 
 body,
 html,
@@ -112,7 +112,8 @@ h3 {
   text-transform: uppercase;
 }
 
-.LoggedInMessage, .LogIn {
+.LoggedInMessage,
+.LogIn {
   padding: 1rem 0;
   text-align: center;
 }
@@ -122,8 +123,9 @@ h3 {
   opacity: 0;
 }
 
-.LogIn h1, .LoggedInMessage h2 {
-  text-shadow: 0 0 3px var(--color-3), 0 0 5px var(--color-3)
+.LogIn h1,
+.LoggedInMessage h2 {
+  text-shadow: 0 0 3px var(--color-3), 0 0 5px var(--color-3);
 }
 
 .Popup {
@@ -141,7 +143,7 @@ h3 {
 .Popup a {
   color: var(--color-5);
   font-size: 2rem;
-  text-shadow: 0 0 3px var(--color-3), 0 0 5px var(--color-3)
+  text-shadow: 0 0 3px var(--color-3), 0 0 5px var(--color-3);
 }
 
 .Popup a:visited {
@@ -202,14 +204,14 @@ h3 {
   }
 
   .App {
-  padding: 0 20rem;
-}
+    padding: 0 20rem;
+  }
 }
 
 @media only screen and (max-width: 1600px) {
   .App {
-  padding: 0 10rem;
-}
+    padding: 0 10rem;
+  }
 }
 
 @media only screen and (max-width: 1300px) {
@@ -218,8 +220,8 @@ h3 {
   }
 
   .App {
-  padding: 0 5rem;
-}
+    padding: 0 5rem;
+  }
 }
 
 /* VERTICAL FLIP */
@@ -229,14 +231,14 @@ h3 {
   }
 
   .AppTracksAndPlaylist {
-  flex-direction: column;
-  gap: 1rem;
-}
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-.AppTracks {
-  height: 50vh;
-  padding-bottom: 2rem;
-}
+  .AppTracks {
+    height: 50vh;
+    padding-bottom: 2rem;
+  }
 
   .AppPlaylist {
     height: 30vh;
@@ -252,21 +254,18 @@ h3 {
   .App {
     padding: 0 10rem;
   }
-
 }
 
 @media only screen and (max-width: 850px) {
   .App {
     padding: 0 5rem;
   }
-
 }
 
 @media only screen and (max-width: 765px) {
   html {
     font-size: 12px;
   }
-
 }
 
 @media only screen and (max-width: 375px) {

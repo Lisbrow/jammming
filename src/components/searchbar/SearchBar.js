@@ -24,7 +24,7 @@ const SearchBar = ({ search, clearSearchResults }) => {
   // Handle clearing search bar with backspace
   const handleBlur = () => {
     if (!term.trim()) {
-      clearSearchResults(); 
+      clearSearchResults();
       debouncedSearch.cancel(); // Cancel the pending search request when clear
     }
   };

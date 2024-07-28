@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  FaMinusCircle,
-  FaPlusCircle,
-} from "react-icons/fa";
+import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import "./Track.css";
 
 const Track = (props) => {
@@ -53,15 +50,15 @@ const Track = (props) => {
 
   return (
     <div className="Track">
-        <div className="TrackImg">
+      <div className="TrackImg">
         {albumArt && (
           <img
             src={albumArt}
             alt="Album Art"
           />
-          
-        )}</div>
-        <div className="TrackInfo">
+        )}
+      </div>
+      <div className="TrackInfo">
         <h3>
           <a
             href={trackUrl}
