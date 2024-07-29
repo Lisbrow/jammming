@@ -5,7 +5,7 @@ const Spotify = ({ children, onSearchResults }) => {
   const REDIRECT_URI = `${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}` || 'http://localhost:3000/';
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-  const SCOPE = "playlist-modify-public";
+  const SCOPE = "playlist-read-private playlist-modify-public playlist-modify-private user-read-private";
   const TOKEN_EXPIRY_TIME = 3600 * 1000; // Spotify tokens expire in 1 hour (3600 seconds)
 
   const [token, setToken] = useState("");
@@ -151,8 +151,8 @@ const Spotify = ({ children, onSearchResults }) => {
       ) : (
         <div className="LoggedInMessage">
           <h2>
-            Hello {profile ? profile.name : "User"}! You are logged in to
-            Spotify
+            {profile ? (`Hello ${profile.name}! You are logged into Spotify`) : `You are logged in to
+            Spotify`}
           </h2>
         </div>
       )}
