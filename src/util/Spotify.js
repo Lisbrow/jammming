@@ -5,12 +5,11 @@ const Spotify = ({ children, onSearchResults }) => {
   const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-  const SCOPE = "playlist-read-private playlist-modify-public playlist-modify-private user-read-private";
-  const TOKEN_EXPIRY_TIME = 3600 * 1000; // Spotify tokens expire in 1 hour (3600 seconds)
+  const SCOPE = "playlist-read-private playlist-modify-public playlist-modify-private user-read-private user-read-email";
 
-  const [token, setToken] = useState("");
+  const [accessToken, setAccessToken] = useState("");
   const [isTokenExpired, setIsTokenExpired] = useState(false);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -18,41 +17,39 @@ const Spotify = ({ children, onSearchResults }) => {
 
     // Token authorization
     if (!token && hash) {
-      token = hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
+      const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
+      const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
+      if (accessTokenMatch && expiresInMatch) {
+        token = accessTokenMatch[1];
+        const expiresIn = Number(expiresInMatch[1]);
+
+        window.localStorage.setItem("token", token);
+        setAccessToken(token);
+
+        window.setTimeout(() => {
+          setAccessToken("");
+          window.localStorage.removeItem("token");
+          setIsTokenExpired(true);
+        }, expiresIn * 1000);
+
+        window.history.pushState("Access Token", null, "/");
+      }
+    } else if (token) {
+      setAccessToken(token);
     }
 
-    setToken(token);
-
-    if (token) {
+    if (token && profile.id) {
       fetchUserProfile(token);
-
-      // Set a timeout to expire the token after the defined expiry time
-      const tokenTimeout = setTimeout(() => {
-        setToken("");
-        window.localStorage.removeItem("token");
-        setIsTokenExpired(true);
-      }, TOKEN_EXPIRY_TIME);
-
-      // Clear timeout on cleanup
-      return () => clearTimeout(tokenTimeout);
     }
-  }, []);
+  }, [profile.id]);
 
   // Fetch user profile from Spotify
-  const fetchUserProfile = (token) => {
-    fetch("https://api.spotify.com/v1/me", {
-      headers: { Authorization: `Bearer ${token}` },
+  const fetchUserProfile = (accessToken) => {
+    fetch(`https://api.spotify.com/v1/users/${profile.id}/`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((jsonResponse) => {
         if (jsonResponse) {
           const { display_name, id } = jsonResponse;
@@ -71,12 +68,10 @@ const Spotify = ({ children, onSearchResults }) => {
   const search = (term) => {
     fetch(`https://api.spotify.com/v1/search?q=${term}&type=track`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         const results = data.tracks.items.map((track) => ({
           id: track.id,
@@ -90,8 +85,7 @@ const Spotify = ({ children, onSearchResults }) => {
           artistUrl: track.artists[0].external_urls.spotify,
           album: track.album.name,
           albumUrl: track.album.external_urls.spotify,
-          uri: track.uri,
-          previewUrl: track.preview_url,
+          uri: track.uri
         }));
 
         onSearchResults(results);
@@ -108,7 +102,7 @@ const Spotify = ({ children, onSearchResults }) => {
     }
 
     const headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     };
 
@@ -117,9 +111,7 @@ const Spotify = ({ children, onSearchResults }) => {
       method: "POST",
       body: JSON.stringify({ name: playlistName }),
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((jsonResponse) => {
         const playlistId = jsonResponse.id;
         return fetch(
@@ -139,9 +131,9 @@ const Spotify = ({ children, onSearchResults }) => {
 
   return (
     <div>
-      {!token ? (
+      {!accessToken ? (
         <a
-          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`}
+          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPE)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`}
         >
           <div className="LogIn">
             <h1>Login to Spotify</h1>
@@ -150,7 +142,7 @@ const Spotify = ({ children, onSearchResults }) => {
       ) : (
         <div className="LoggedInMessage">
           <h2>
-            {profile ? (`Hello ${profile.name}! You are logged into Spotify`) : `You are logged in to Spotify`}
+            {profile && profile.name ? (`Hello ${profile.name}! You are logged into Spotify`) : `You are logged in to Spotify`}
           </h2>
         </div>
       )}
@@ -158,14 +150,14 @@ const Spotify = ({ children, onSearchResults }) => {
         <div className="Popup">
           <p>Your session has expired. Please log back in.</p>
           <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`}
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPE)}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`}
           >
             Log back in to Spotify?
           </a>
         </div>
       )}
       {typeof children === "function" &&
-        token &&
+        accessToken &&
         children(search, savePlaylist)}
     </div>
   );
