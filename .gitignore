@@ -5,8 +5,12 @@
 /.pnp
 .pnp.js
 
-# api keys
+# Environment files
 .env
+.env.local
+.env.development
+.env.test
+.env.production
 
 # testing
 /coverage

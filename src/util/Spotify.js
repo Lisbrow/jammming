@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const Spotify = ({ children, onSearchResults }) => {
-  const CLIENT_ID = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
-  const REDIRECT_URI = `${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}` || 'http://localhost:3000/';
+  const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+  const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const SCOPE = "playlist-read-private playlist-modify-public playlist-modify-private user-read-private";
@@ -142,7 +142,7 @@ const Spotify = ({ children, onSearchResults }) => {
     <div>
       {!token ? (
         <a
-          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}`}
+          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`}
         >
           <div className="LogIn">
             <h1>Login to Spotify</h1>
@@ -151,8 +151,7 @@ const Spotify = ({ children, onSearchResults }) => {
       ) : (
         <div className="LoggedInMessage">
           <h2>
-            {profile ? (`Hello ${profile.name}! You are logged into Spotify`) : `You are logged in to
-            Spotify`}
+            {profile ? (`Hello ${profile.name}! You are logged into Spotify`) : `You are logged in to Spotify`}
           </h2>
         </div>
       )}
@@ -160,7 +159,7 @@ const Spotify = ({ children, onSearchResults }) => {
         <div className="Popup">
           <p>Your session has expired. Please log back in.</p>
           <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}`}
+            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`}
           >
             Log back in to Spotify?
           </a>
