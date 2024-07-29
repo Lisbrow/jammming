@@ -47,9 +47,8 @@ const Spotify = ({ children, onSearchResults }) => {
 
   // Fetch user profile from Spotify
   const fetchUserProfile = (token) => {
-    const headers = { Authorization: `Bearer ${token}` };
     fetch("https://api.spotify.com/v1/me", {
-      headers: headers,
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => {
         return response.json();
