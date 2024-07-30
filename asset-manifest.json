@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/jammming/static/css/main.d462d13d.css",
-    "main.js": "/jammming/static/js/main.a1e87a52.js",
+    "main.js": "/jammming/static/js/main.c7b21808.js",
     "static/media/dog-with-headphones-color-extended.jpg": "/jammming/static/media/dog-with-headphones-color-extended.a744cc40e3ef822e09db.jpg",
     "index.html": "/jammming/index.html",
     "main.d462d13d.css.map": "/jammming/static/css/main.d462d13d.css.map",
-    "main.a1e87a52.js.map": "/jammming/static/js/main.a1e87a52.js.map"
+    "main.c7b21808.js.map": "/jammming/static/js/main.c7b21808.js.map"
   },
   "entrypoints": [
     "static/css/main.d462d13d.css",
-    "static/js/main.a1e87a52.js"
+    "static/js/main.c7b21808.js"
   ]
 }
