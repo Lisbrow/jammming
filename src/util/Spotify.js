@@ -46,27 +46,31 @@ const Spotify = ({ children, onSearchResults }) => {
   }, []);
 
   // Fetch user profile from Spotify
-  const fetchUserProfile = (token) => {
-    const headers = { Authorization: `Bearer ${token}` };
-    fetch("https://api.spotify.com/v1/me", {
-      headers: headers,
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((jsonResponse) => {
-        if (jsonResponse) {
-          const { display_name, id } = jsonResponse;
-          console.log("Fetched profile:", jsonResponse); // Logging profile data
-          setProfile({
-            name: display_name,
-            id: id,
-          });
+  const fetchUserProfile = async (token) => {
+    try {
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await fetch("https://api.spotify.com/v1/me", { headers });
+      
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          alert('Sorry!\nYou are not listed as an approved user by the developer to use this app. This app uses development mode and does not have an OCTA-extension, which is required by Spotify to make the app fully public.');
+          window.location.href = REDIRECT_URI;
+          localStorage.clear();
+          throw new Error('Unauthorized or Forbidden');
         }
-      })
-      .catch((error) =>
-        console.error("Error fetching user profile from Spotify API", error)
-      );
+        throw new Error('Failed to fetch user profile');
+      }
+
+      const jsonResponse = await response.json();
+      const { display_name, id } = jsonResponse;
+      console.log("Fetched profile:", jsonResponse); // Logging profile data
+      setProfile({
+        name: display_name,
+        id: id,
+      });
+    } catch (error) {
+      console.error("Error fetching user profile from Spotify API", error);
+    }
   };
 
   // Search tracks using Spotify API
