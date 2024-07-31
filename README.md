@@ -1,5 +1,7 @@
 # Jammming
 
+![Preview](https://lisbrow.github.io/jammming/jammmingPreview.mp4)
+
 Jammming is a React web application that allows users to search the Spotify library, create a custom playlist, and save it to their Spotify account.
 
 ## Table of Contents
@@ -13,7 +15,6 @@ Jammming is a React web application that allows users to search the Spotify libr
     - [Installation](#installation)
   - [Usage](#usage)
   - [Future Work](#future-work)
-  - [License](#license)
   - [Acknowledgements](#acknowledgements)
 
 ## Purpose
@@ -64,7 +65,7 @@ Before you begin, ensure you have the following:
     ```
 
 ## Usage
-1. Open your browser and navigate to `http://localhost:3000/`.
+1. Open your browser and navigate to `http://localhost:3000/` to view it locally or [https://lisbrow.github.io/jammming/](https://lisbrow.github.io/jammming/) to view the live demo.
 2. Click the "Login to Spotify" button to authenticate with your Spotify account.
 3. Use the search bar to find tracks you want to add to your playlist.
 4. Add tracks to your playlist by clicking the "+" button or remove tracks from your playlist by clicking the "-" button next to each track (visible upon hover).
@@ -76,9 +77,6 @@ Before you begin, ensure you have the following:
 - Improve the user interface and user experience.
 - Add song previews to each track with "play" and "pause/stop" buttons.
 - Add personalized user experience by implementing a new component that will contain the user's existing playists.
-
-## License
-This project is licensed under the MIT License.
 
 ## Acknowledgements
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
